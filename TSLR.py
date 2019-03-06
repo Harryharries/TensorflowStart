@@ -8,7 +8,8 @@ noise = np.random.normal(0,0.02,x_data.shape)
 y_data = np.square(x_data) + noise
 
 #查看一下数据形状
-# print(x_data.shape)
+print(x_data.shape)
+print(x_data)
 # type(x_data)
 # print(noise.shape)
 
@@ -43,7 +44,9 @@ with tf.Session() as sess:
     # 获得预测值
     prediction_value = sess.run(prediction, feed_dict={x: x_data})
 
+    fig = plt.figure(figsize=(10, 10), dpi=100)
     plt.figure()
     plt.scatter(x_data, y_data)
     plt.plot(x_data, prediction_value, 'r-', lw=5)
     plt.show()
+    fig.savefig('plot.png', bbox_inches='tight', dpi=100)
